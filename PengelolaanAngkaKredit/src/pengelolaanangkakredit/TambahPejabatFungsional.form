@@ -24,86 +24,91 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel7" alignment="0" pref="60" max="32767" attributes="0"/>
+                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelBidang" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelGol" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelJabatan" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelBagian" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelNama" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labelNIP" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="buttonCetak" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Component id="fieldGolongan" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="fieldBagian" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="fieldBidang" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="fieldNama" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="fieldNIP" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="fieldJabatan" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="buttonHapus" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                              <Component id="buttonCetak" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="buttonSimpan" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelNama" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="buttonCetak" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonSimpan" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonHapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="buttonSimpan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonCetak" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldNama" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldNIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldBagian" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldBidang" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldGolongan" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldJabatan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelBagian" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelBidang" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelGol" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelJabatan" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -112,52 +117,27 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nama  :"/>
+        <Property name="text" type="java.lang.String" value="Nama  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="NIP      :"/>
+        <Property name="text" type="java.lang.String" value="NIP      "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bagian :"/>
+        <Property name="text" type="java.lang.String" value="Bagian "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bidang :"/>
+        <Property name="text" type="java.lang.String" value="Bidang "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gol      :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelNama">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelNama"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelNIP">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelNIP"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelBagian">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelBagian"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelBidang">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelBidang"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelGol">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelGol"/>
+        <Property name="text" type="java.lang.String" value="Gol      "/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -197,8 +177,8 @@
                                       <Component id="fieldNilaiYangDibutuhkanIjazah" alignment="0" max="32767" attributes="0"/>
                                       <Component id="fieldSisa" alignment="0" max="32767" attributes="0"/>
                                       <Component id="fieldNilaiUtamaDibutuhkan" max="32767" attributes="0"/>
-                                      <Component id="fieldGolongan" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="fieldJabatan" max="32767" attributes="0"/>
+                                      <Component id="fieldNaikGolongan" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="fieldNaikJabatan" max="32767" attributes="0"/>
                                       <Component id="jScrollPane1" max="32767" attributes="0"/>
                                       <Component id="fieldNilaiPenunjangDibutuhkan" alignment="0" max="32767" attributes="0"/>
                                       <Component id="fieldLamanyaAngkaKredit" alignment="0" max="32767" attributes="0"/>
@@ -324,12 +304,12 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldGolongan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldNaikGolongan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldJabatan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldNaikJabatan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -487,12 +467,12 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fieldGolongan">
+        <Component class="javax.swing.JTextField" name="fieldNaikGolongan">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fieldJabatan">
+        <Component class="javax.swing.JTextField" name="fieldNaikJabatan">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -518,12 +498,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jabatan     :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelJabatan">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="labelJabatan"/>
+        <Property name="text" type="java.lang.String" value="Jabatan     "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonSimpan">
@@ -534,14 +509,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSimpanActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonHapus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Hapus"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHapusActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="buttonCetak">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cetak Momerandum"/>
@@ -549,6 +516,85 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCetakActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldNama">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNamaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldNIP">
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldJabatan">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="fieldBagian">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="14">
+            <StringItem index="0" value="PENGAWAS RADIASI"/>
+            <StringItem index="1" value="PRANATA NUKLIR : Tingkat Terampil"/>
+            <StringItem index="2" value="LITKAYASA"/>
+            <StringItem index="3" value="PUSTAKAWAN"/>
+            <StringItem index="4" value="ARSIPARIS"/>
+            <StringItem index="5" value="PENELITI"/>
+            <StringItem index="6" value="ANALIS KEPEG.T"/>
+            <StringItem index="7" value="ANALIS KEPEG.AHLI"/>
+            <StringItem index="8" value="PENGENDALI DAMPAK LINGKUNGAN"/>
+            <StringItem index="9" value="PRANATA HUMAS"/>
+            <StringItem index="10" value="PRANATA NUKLIR : Tingkat Ahli"/>
+            <StringItem index="11" value="HUMAS : Tingkat Ahli"/>
+            <StringItem index="12" value="PENGAWAS RADIASI : Tingkat Ahli"/>
+            <StringItem index="13" value="PEREKAYASAAN"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="fieldBidang">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="7">
+            <StringItem index="0" value="Bidang Senyawa Bertanda dan Radiometri"/>
+            <StringItem index="1" value="Bidang K - 3"/>
+            <StringItem index="2" value="Bidang Teknofisika"/>
+            <StringItem index="3" value="Bidang Reaktor"/>
+            <StringItem index="4" value="Bidang  SBR"/>
+            <StringItem index="5" value="Bagian Tata Usaha Tingkat Trampil"/>
+            <StringItem index="6" value="Pengelola Pengadaan Barang/Jasa"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="fieldGolongan">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="13">
+            <StringItem index="0" value="II/a"/>
+            <StringItem index="1" value="II/b"/>
+            <StringItem index="2" value="II/c"/>
+            <StringItem index="3" value="III/d"/>
+            <StringItem index="4" value="III/a"/>
+            <StringItem index="5" value="III/b"/>
+            <StringItem index="6" value="III/c"/>
+            <StringItem index="7" value="III/d"/>
+            <StringItem index="8" value="III/d M"/>
+            <StringItem index="9" value="IV/a"/>
+            <StringItem index="10" value="IV/b"/>
+            <StringItem index="11" value="IV/c"/>
+            <StringItem index="12" value="IV/d"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

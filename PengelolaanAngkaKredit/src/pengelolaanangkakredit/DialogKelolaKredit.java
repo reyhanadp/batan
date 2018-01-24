@@ -5,7 +5,26 @@
  */
 package pengelolaanangkakredit;
 
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
+import java.awt.Desktop;
 import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -27,6 +46,7 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
 
     Connection con = DatabaseConnectivity.getConnection();
     String nip;
+    public static final String logo = "src/gambar/batan_logo.png";
 
     /**
      * Creates new form DialogKelolaKredit
@@ -141,6 +161,7 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
         labelJabatan = new javax.swing.JLabel();
         buttonSimpan = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
+        buttonCetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -244,49 +265,33 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 148, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(fieldTMTJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fieldAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(14, 14, 14)))
-                                .addGap(123, 123, 123))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(fieldUnsurUtamaIjazah, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldUnsurPenunjang)
-                                    .addComponent(fieldPendidikanFormal))
-                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(fieldUnsurUtama, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fieldAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(88, 88, 88))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel20))
-                                .addGap(22, 22, 22)
+                                .addComponent(jLabel21)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fieldJumlahAngkaKredit)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(fieldAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(fieldNilaiYangDibutuhkan)
                                     .addComponent(fieldNilaiYangDibutuhkanIjazah)
                                     .addComponent(fieldSisa)
                                     .addComponent(fieldNilaiUtamaDibutuhkan)
+                                    .addComponent(fieldGolongan)
+                                    .addComponent(fieldJabatan)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(fieldNilaiPenunjangDibutuhkan)
                                     .addComponent(fieldLamanyaAngkaKredit)))
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22)
@@ -294,29 +299,26 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
                                     .addComponent(jLabel24)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel10))
+                                .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(fieldTMTGol, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(fieldTMTGol, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(23, 23, 23)
                                         .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                                        .addComponent(fieldTMTJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(fieldAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel14)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(56, 56, 56)
-                                        .addComponent(fieldGolongan))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(56, 56, 56)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fieldJabatan)
-                                            .addComponent(jScrollPane1)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(8, 8, 8)
-                                .addComponent(fieldNilaiPenunjangDibutuhkan))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(fieldUnsurPenunjang)
+                                    .addComponent(fieldUnsurUtamaIjazah)
+                                    .addComponent(fieldPendidikanFormal)
+                                    .addComponent(fieldUnsurUtama))))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -411,39 +413,49 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
             }
         });
 
+        buttonCetak.setText("Cetak Momerandum");
+        buttonCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelBidang)
                             .addComponent(labelGol)
                             .addComponent(labelJabatan)
                             .addComponent(labelBagian)
-                            .addComponent(labelNama))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelNama)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelNIP)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buttonCetak)))
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonHapus)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonSimpan))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelNIP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonHapus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSimpan)
-                        .addGap(23, 23, 23))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,11 +464,13 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(labelNama))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(labelNIP)
-                    .addComponent(buttonSimpan)
-                    .addComponent(buttonHapus))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonCetak)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(labelNIP)
+                        .addComponent(buttonSimpan)
+                        .addComponent(buttonHapus)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -473,9 +487,8 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(labelJabatan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -500,6 +513,7 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
         DecimalFormat decimalFormat2 = new DecimalFormat("#.##");
         DecimalFormat decimalFormat4 = new DecimalFormat("#.####");
         double lamanya_angka_kredit = 0;
+        String lamanya_angka_kredit_string = "";
         try {
             Date sekarang = dateFormat.parse(s.format(ys));
             Date tanggal_jabatan = dateFormat.parse(s.format(TMTJabatan));
@@ -509,11 +523,19 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
             double lama = diff / (24 * 60 * 60 * 1000);
             lamanya_angka_kredit = lama / 365;
 
+            lamanya_angka_kredit_string = decimalFormat2.format(lamanya_angka_kredit);
+            String[] lamanya_angka_kredit_pisah = lamanya_angka_kredit_string.split("\\,");
+            lamanya_angka_kredit_string = lamanya_angka_kredit_pisah[0] + "." + lamanya_angka_kredit_pisah[1];
+
         } catch (ParseException ex) {
             Logger.getLogger(DialogKelolaKredit.class.getName()).log(Level.SEVERE, null, ex);
         }
         double nilai_dibutuhkan = 0;
         double jumlah_angka_kredit = Double.parseDouble(fieldUnsurUtamaIjazah.getText()) + Double.parseDouble(fieldUnsurPenunjang.getText());
+        String jumlah_angka_kredit_string = decimalFormat2.format(jumlah_angka_kredit);
+        String[] jumlah_angka_kredit_pisah = jumlah_angka_kredit_string.split("\\,");
+        jumlah_angka_kredit_string = jumlah_angka_kredit_pisah[0] + "." + jumlah_angka_kredit_pisah[1];
+
         if (labelGol.getText().equals("II/a")) {
             nilai_dibutuhkan = 40;
         } else if (fieldGolongan.getText().equals("II/b")) {
@@ -539,11 +561,27 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
         double nilai_dibutuhkan_ijazah = nilai_dibutuhkan - Double.parseDouble(fieldPendidikanFormal.getText());
 
         double sisa = Math.abs(nilai_dibutuhkan_ijazah - jumlah_angka_kredit);
+        String sisa_string = decimalFormat2.format(sisa);
+        String[] sisa_pisah = sisa_string.split("\\,");
+        sisa_string = sisa_pisah[0] + "." + sisa_pisah[1];
+
         double nilai_utama_dibutuhkan;
         if (nilai_dibutuhkan_ijazah * 80 / 100 - Double.parseDouble(fieldUnsurUtamaIjazah.getText()) <= 0) {
             nilai_utama_dibutuhkan = 0;
         } else {
             nilai_utama_dibutuhkan = nilai_dibutuhkan_ijazah * 80 / 100 - Double.parseDouble(fieldUnsurUtamaIjazah.getText());
+        }
+
+        String nilai_utama_dibutuhkan_string = decimalFormat2.format(nilai_utama_dibutuhkan);
+        String[] nilai_utama_dibutuhkan_pisah = nilai_utama_dibutuhkan_string.split("\\,");
+        nilai_utama_dibutuhkan_string = "";
+        for (int i = 0; i < nilai_utama_dibutuhkan_pisah.length; i++) {
+            if (i == 0) {
+                nilai_utama_dibutuhkan_string = nilai_utama_dibutuhkan_pisah[0];
+            } else if (i == 1) {
+                nilai_utama_dibutuhkan_string = nilai_utama_dibutuhkan_pisah[0] + "." + nilai_utama_dibutuhkan_pisah[1];
+            }
+
         }
 
         double nilai_utama_dibutuhkan_penunjang;
@@ -552,44 +590,20 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
         } else {
             nilai_utama_dibutuhkan_penunjang = sisa - nilai_utama_dibutuhkan;
         }
+        String nilai_utama_dibutuhkan_penunjang_string = decimalFormat2.format(nilai_utama_dibutuhkan_penunjang);
+        String[] nilai_utama_dibutuhkan_penunjang_pisah = nilai_utama_dibutuhkan_penunjang_string.split("\\,");
+        nilai_utama_dibutuhkan_penunjang_string = "";
+        for (int i = 0; i < nilai_utama_dibutuhkan_penunjang_pisah.length; i++) {
+            if (i == 0) {
+                nilai_utama_dibutuhkan_penunjang_string = nilai_utama_dibutuhkan_penunjang_pisah[0];
+            } else if (i == 1) {
+                nilai_utama_dibutuhkan_penunjang_string = nilai_utama_dibutuhkan_penunjang_pisah[0] + "." + nilai_utama_dibutuhkan_penunjang_pisah[1];
+            }
 
+        }
         String jabatan = null;
-//        if (labelGol.getText().equals("II/a") && labelBagian.getText().equals("Pengawas Radiasi")) {
-//            jabatan = "PR P-Pemula";
-//        } else if (labelGol.getText().equals("II/a") && labelBagian.getText().equals("Pranata Nuklir Terampil")) {
-//            jabatan = "PN Muda";
-//        } else if (labelGol.getText().equals("II/a") && labelBagian.getText().equals("Teknisi Litkayasa Pelaksana Pemula")) {
-//            jabatan = "TL P-Pemula";
-//        } else if (labelGol.getText().equals("II/a") && labelBagian.getText().equals("Pranata Humas")) {
-//            jabatan = "PH Pelaksana Pemula";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Pengawas Radiasi")) {
-//            jabatan = "PR Pelaksana";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Pranata Nuklir Terampil")) {
-//            jabatan = "PN Pelaksana";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Teknisi Litkayasa Pelaksana Pemula")) {
-//            jabatan = "PN Pelaksana";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Pustakawan")) {
-//            jabatan = "P Pelaksana";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Arsiparis")) {
-//            jabatan = "As. Arsiparis Madya";
-//        } else if (labelGol.getText().equals("II/b") && labelBagian.getText().equals("Pranata Humas")) {
-//            jabatan = "PH Pelaksana";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Pengawas Radiasi")) {
-//            jabatan = "PR Pelaksana";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Pranata Nuklir Terampil")) {
-//            jabatan = "PN Terampil";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Teknisi Litkayasa Pelaksana Pemula")) {
-//            jabatan = "PN Pelaksana";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Pustakawan")) {
-//            jabatan = "P Pelaksana";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Arsiparis")) {
-//            jabatan = "As. Arsiparis";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Analis KEPEG.T")) {
-//            jabatan = "AK Pelaksana";
-//        } else if (labelGol.getText().equals("II/c") && labelBagian.getText().equals("Pranata Humas")) {
-//            jabatan = "PH Pelaksana";
-//        }
         
+
         String golongan = null;
         if (nilai_dibutuhkan == 40) {
             golongan = "II/b";
@@ -612,71 +626,53 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
         } else if (nilai_dibutuhkan == 700) {
             golongan = "IV/c";
         }
-        
+
         String keterangan = fieldKeterangan.getText();
-        
+
         try {
-                String sql = "update jab_fung set TMT_GOL=?,"
-                        + " TMT_Jabatan=?,"
-                        + " Unsur_Utama=?,"
-                        + " Pendidikan_Formal_(Ijazah)=?,"
-                        + " Unsur_Utama_(Minus_Ijazah)=?,"
-                        + " Unsur_Penunjang=?,"
-                        + " Masa_Penilaian_Awal=?,"
-                        + " Masa_Penilaian_Akhir=?"
-                        + " Lama=?,"
-                        + " Jumlah_Angka_Kredit=?,"
-                        + " Nilai_yang_Dibutuhkan=?,"
-                        + " Nilai_yang_Dibutuhkan_(Minus_Ijazah)=?,"
-                        + " Sisa=?,"
-                        + " Utama=?,"
-                        + " Penunjang=?,"
-                        + " Akan_Naik_ke_Gol=?,"
-                        + " Akan_Naik_ke_Jabatan=?,"
-                        + " Keterangan=? where nip ='"+this.nip+"'";
-                PreparedStatement stat = (PreparedStatement) con.prepareStatement(sql);
-                stat.setDate(1, new java.sql.Date(TMTGol.getTime()));
-                stat.setDate(2, new java.sql.Date(TMTJabatan.getTime()));
-                stat.setString(3, fieldUnsurUtama.getText());
-                stat.setString(4, fieldPendidikanFormal.getText());
-                stat.setString(5, fieldUnsurUtamaIjazah.getText());
-                stat.setString(6, fieldUnsurPenunjang.getText());
-                stat.setString(7, sdf.format(fieldAwal.getDate()));
-                stat.setString(8, sdf.format(fieldAkhir.getDate()));
-                stat.setString(9, decimalFormat2.format(lamanya_angka_kredit));
-                stat.setString(10, decimalFormat2.format(jumlah_angka_kredit));
-                stat.setString(11, decimalFormat2.format(nilai_dibutuhkan));
-                stat.setString(12, decimalFormat2.format(nilai_dibutuhkan_ijazah));
-                stat.setString(13, decimalFormat2.format(sisa));
-                stat.setString(14, decimalFormat2.format(nilai_utama_dibutuhkan));
-                stat.setString(15, decimalFormat2.format(nilai_utama_dibutuhkan_penunjang));
-                stat.setString(16, golongan);
-                stat.setString(17, labelJabatan.getText());
-                stat.setString(18, keterangan);
-                System.out.println(new java.sql.Date(TMTGol.getTime()));
-                System.out.println(new java.sql.Date(TMTJabatan.getTime()));
-                System.out.println(fieldUnsurUtama.getText());
-                System.out.println(fieldPendidikanFormal.getText());
-                System.out.println(fieldUnsurUtamaIjazah.getText());
-                System.out.println(fieldUnsurPenunjang.getText());
-                System.out.println(sdf.format(fieldAwal.getDate()));
-                System.out.println(sdf.format(fieldAkhir.getDate()));
-                System.out.println(decimalFormat2.format(lamanya_angka_kredit));
-                System.out.println(jumlah_angka_kredit);
-                System.out.println(nilai_dibutuhkan);
-                System.out.println(nilai_dibutuhkan_ijazah);
-                System.out.println(decimalFormat2.format(sisa));
-                System.out.println(decimalFormat2.format(nilai_utama_dibutuhkan));
-                System.out.println(nilai_utama_dibutuhkan_penunjang);
-                System.out.println(golongan);
-                System.out.println(labelJabatan.getText());
-                System.out.println(keterangan);
-                
-                stat.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Menyimpan data BERHASIL!","Informasi", JOptionPane.INFORMATION_MESSAGE);
-            }catch (SQLException | HeadlessException ex){
-                JOptionPane.showMessageDialog(null, "Menyimpan data GAGAL!","Informasi", JOptionPane.INFORMATION_MESSAGE);
-            }
+            String sql = "update jab_fung set TMT_GOL=?,"
+                    + " TMT_Jabatan=?,"
+                    + " Unsur_Utama=?,"
+                    + " Pendidikan_Formal_Ijazah=?,"
+                    + " Unsur_Utama_Minus_Ijazah=?,"
+                    + " Unsur_Penunjang=?,"
+                    + " Masa_Penilaian_Awal=?,"
+                    + " Masa_Penilaian_Akhir=?,"
+                    + " Lama=?,"
+                    + " Jumlah_Angka_Kredit=?,"
+                    + " Nilai_yang_Dibutuhkan=?,"
+                    + " Nilai_yang_Dibutuhkan_Minus_Ijazah=?,"
+                    + " Sisa=?,"
+                    + " Utama=?,"
+                    + " Penunjang=?,"
+                    + " Akan_Naik_ke_Gol=?,"
+                    + " Akan_Naik_ke_Jabatan=?,"
+                    + " Keterangan=? where nip ='" + this.nip + "'";
+            PreparedStatement stat = (PreparedStatement) con.prepareStatement(sql);
+            stat.setDate(1, new java.sql.Date(TMTGol.getTime()));
+            stat.setDate(2, new java.sql.Date(TMTJabatan.getTime()));
+            stat.setString(3, fieldUnsurUtama.getText());
+            stat.setString(4, fieldPendidikanFormal.getText());
+            stat.setString(5, fieldUnsurUtamaIjazah.getText());
+            stat.setString(6, fieldUnsurPenunjang.getText());
+            stat.setString(7, sdf.format(fieldAwal.getDate()));
+            stat.setString(8, sdf.format(fieldAkhir.getDate()));
+            stat.setString(9, lamanya_angka_kredit_string);
+            stat.setString(10, jumlah_angka_kredit_string);
+            stat.setDouble(11, nilai_dibutuhkan);
+            stat.setDouble(12, nilai_dibutuhkan_ijazah);
+            stat.setString(13, sisa_string);
+            stat.setString(14, nilai_utama_dibutuhkan_string);
+            stat.setString(15, nilai_utama_dibutuhkan_penunjang_string);
+            stat.setString(16, golongan);
+            stat.setString(17, labelJabatan.getText());
+            stat.setString(18, keterangan);
+
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Menyimpan data BERHASIL!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(DialogKelolaKredit.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonSimpanActionPerformed
 
     private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
@@ -695,6 +691,131 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_buttonHapusActionPerformed
+
+    private void buttonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCetakActionPerformed
+
+        try {
+            // TODO add your handling code here:
+            Document doc = new Document(PageSize.A4);
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(this.nip + "Momerandum.pdf"));
+            writer.setPdfVersion(PdfWriter.VERSION_1_7);
+            doc.open();
+            Image img1 = Image.getInstance(logo);
+            img1.setAbsolutePosition(48f,730f);
+            img1.scaleAbsolute(60f, 60f);
+            Font fatas=new Font(FontFamily.TIMES_ROMAN,20f,Font.BOLD,BaseColor.BLACK);
+            Paragraph atas = new Paragraph("                 BADAN TENAGA NUKLIR NASIONAL ",fatas);
+            Font fatas1=new Font(FontFamily.TIMES_ROMAN,14f,Font.BOLD,BaseColor.BLACK);
+            Paragraph atas1 = new Paragraph("PUSAT SAINS DAN TEKNOLOGI NUKLIR TERAPAN  ",fatas1);
+            Paragraph atas2 = new Paragraph("Jl. Tamansari No. 71 Telp. 022-2503997  Fax. 022-2504081 Bandung, 40132        ");
+            Paragraph atas3 = new Paragraph("_____________________________________________________________________________");
+            Paragraph paragraph1 = new Paragraph("M O M E R A N D U M");
+            Paragraph paragraph2 = new Paragraph("Nomor :      /KPTF/SNT/2017");
+            Paragraph nama =        new Paragraph("Yth.           : "+labelNama.getText());
+            Paragraph nip =         new Paragraph("NIP.           : "+labelNIP.getText()+"  ");
+            Paragraph jabatan =     new Paragraph("Jabatan    : "+labelJabatan.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMMM-yyyy");
+            Paragraph TMT_Fung =    new Paragraph("TMT Fung.  : "+sdf.format(fieldTMTJabatan.getDate())+"             ");
+            Paragraph perihal =     new Paragraph("Perihal      : Tambahan Angka Kredit");
+            Paragraph gol =         new Paragraph("Gol.            : "+labelGol.getText()+"                               ");
+            Paragraph k = new Paragraph("Dengan ini kami beritahukan kepada seluruh fungsional non peneliti bahwa: ");
+            Paragraph l = new Paragraph("1. Untuk pengajuan penilaian angka kredit periode Oktober 2017, Saudara harus sudah menyerahkan berkas lengkap ke Sekretariat KPTF paling lambat tanggal 8 Mei 2017.");
+            Paragraph n = new Paragraph("2. Berkas bukti kegiatan yang Saudara nilaikan adalah fotocopy (bukan asli) yang sudah dilegalisir oleh pejabat yang berwenang, sesuai dengan ketentuan masing-masing fungsional, sampai tanggal 30 April 2017. ");
+            Paragraph q = new Paragraph("3. Makalah atau karya tulis ilmiah yang dinilaikan bukan makalah yang sedang dalam proses pemeriksaan, tetapi makalah yang sudah selesai diperiksa KPTF sebelum tanggal 30 April 2017. ");
+            Paragraph s = new Paragraph("4. Unsur utama yang dinilaikan harus terdiri dari unsur pelayanan/kegiatan harian dan pengembangan profesi serta unsur penunjang. ");
+            Paragraph u = new Paragraph("Demikian untuk diketahui dan menjadi perhatian Saudara. Terimakasih.");
+            Paragraph v = new Paragraph("Wakil Ketua KPTF                      ");
+            Paragraph w = new Paragraph("        Haryo Seno, M.Si                       ");
+            Paragraph x = new Paragraph("  NIP: 19850720 200801 1 008             ");
+            Paragraph zzz = new Paragraph ("  ");
+            Paragraph z = new Paragraph("Catatan : ");
+            Paragraph zz = new Paragraph("Untuk setiap kenaikan jenjang fungsional atau kepangkatan harus memenuhi ketentuan angka kredit sebagai berikut (berdasarkan data PAK terakhir):");
+            Paragraph unsurutama =  new Paragraph("Unsur Utama          : "+fieldUnsurUtama.getText());
+            Paragraph jabatan1 =     new Paragraph("Unsur Penunjang   : "+fieldUnsurPenunjang.getText());
+            Paragraph perihal1 =     new Paragraph("Jumlah saat ini       : "+Double.parseDouble(fieldUnsurUtama.getText())+Double.parseDouble(fieldUnsurPenunjang.getText()));
+            Paragraph tengah =      new Paragraph("dibutuhkan unsur");
+            Paragraph nip1 =         new Paragraph("Utama           : "+fieldNilaiUtamaDibutuhkan.getText()+"                     ");
+            Paragraph TMT_Fung1 =    new Paragraph("Penunjang     : "+fieldNilaiPenunjangDibutuhkan.getText()+"            ");
+            Paragraph gol1 =         new Paragraph("Jumlah          : "+fieldNilaiUtamaDibutuhkan.getText()+fieldNilaiPenunjangDibutuhkan.getText()+"          ");
+            atas.setSpacingBefore(0f);
+
+            atas1.setAlignment(1);
+            atas1.setSpacingBefore(3f);
+            atas2.setAlignment(2);
+            atas2.setSpacingBefore(3f);
+            atas3.setSpacingBefore(-10f);
+            paragraph1.setAlignment(1);
+            paragraph1.setSpacingBefore(10f);
+            paragraph2.setAlignment(1);
+            paragraph2.setSpacingBefore(5f);
+            nama.setSpacingBefore(10f);
+            nip.setAlignment(2);
+            nip.setSpacingBefore(-15f);
+            TMT_Fung.setAlignment(2);
+            TMT_Fung.setSpacingBefore(-15f);
+            gol.setAlignment(2);
+            gol.setSpacingBefore(-15f);
+            k.setSpacingBefore(20f);
+            v.setAlignment(2);
+            v.setSpacingBefore(30f);
+            w.setAlignment(2);
+            w.setSpacingBefore(80f);
+            x.setAlignment(2);
+            x.setSpacingBefore(0f);
+            tengah.setAlignment(1);
+            tengah.setSpacingBefore(-46f);
+            nip1.setAlignment(2);
+            nip1.setSpacingBefore(-28f);
+            TMT_Fung1.setAlignment(2);
+            TMT_Fung1.setSpacingBefore(2f);
+            gol1.setAlignment(2);
+            gol1.setSpacingBefore(2f);
+            doc.add(img1);
+            doc.add(atas);
+            doc.add(atas1);
+            doc.add(atas2);
+            doc.add(atas3);
+            doc.add(paragraph1);
+            doc.add(paragraph2);
+            doc.add(nama);
+            doc.add(nip);
+            doc.add(jabatan);
+            doc.add(TMT_Fung);
+            doc.add(perihal);
+            doc.add(gol);
+            doc.add(k);
+            doc.add(l);
+            doc.add(n);
+            doc.add(q);
+            doc.add(s);
+            doc.add(u);
+            doc.add(v);
+            doc.add(w);
+            doc.add(x);
+            doc.add(zzz);
+            doc.add(z);
+            doc.add(zz);
+            doc.add(unsurutama);
+            doc.add(jabatan1);
+            doc.add(perihal1);
+            doc.add(tengah);
+            doc.add(nip1);
+            doc.add(TMT_Fung1);
+            doc.add(gol1);
+//            doc.add(new Paragraph(labelNama.getText().toString()));
+            doc.close();
+
+            File file = new File(this.nip + "Momerandum.pdf");
+            Desktop desktop = Desktop.getDesktop();
+            if (file.exists()) {
+                desktop.open(file);
+            }
+        } catch (DocumentException ex) {
+            Logger.getLogger(DialogKelolaKredit.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DialogKelolaKredit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonCetakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -739,6 +860,7 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCetak;
     private javax.swing.JButton buttonHapus;
     private javax.swing.JButton buttonSimpan;
     private com.toedter.calendar.JDateChooser fieldAkhir;
@@ -792,4 +914,5 @@ public class DialogKelolaKredit extends javax.swing.JDialog {
     private javax.swing.JLabel labelNIP;
     private javax.swing.JLabel labelNama;
     // End of variables declaration//GEN-END:variables
+
 }
